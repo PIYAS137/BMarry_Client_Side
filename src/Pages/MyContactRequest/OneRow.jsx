@@ -4,10 +4,8 @@ import { TableCell, TableRow } from "@mui/material";
 
 
 const OneRow = ({data}) => {
-
-
     return (
-        (
+        
             <TableRow>
                 <TableCell component="th" scope="row">
                     {data.name}
@@ -23,7 +21,7 @@ const OneRow = ({data}) => {
                     {/* <span className=" text-green-600 font-bold">accepted</span> */}
                 </TableCell>
             </TableRow>
-        )
+        
     )
 }
 
