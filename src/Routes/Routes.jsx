@@ -19,6 +19,7 @@ import ManageUserPage from '../Pages/ManageUserPage/ManageUserPage'
 import ApprovePremiumPage from '../Pages/ApprovePremiumPage/ApprovePremiumPage'
 import ApproveContactReqPage from '../Pages/ApproveContactReqPage/ApproveContactReqPage'
 import GotMarriedPage from '../Pages/GotMarriedPage/GotMarriedPage'
+import UsersSuccessStoryPage from '../Pages/UsersSuccessStoryPage/UsersSuccessStoryPage'
 
 
 const router = createBrowserRouter([
@@ -80,6 +81,10 @@ const router = createBrowserRouter([
             {
                 path: 'adminApproveContactReq',
                 element: <ApproveContactReqPage />
+            },
+            {
+                path:'adminSuccessStory',
+                element:<UsersSuccessStoryPage/>
             },
             // --------------admin routes--------------
             {

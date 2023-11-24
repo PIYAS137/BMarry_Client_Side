@@ -18,6 +18,7 @@ const DashBoard = () => {
               <NavLink to={'adminManageUser'}><li className="bg-pink-700 text-white px-3 py-2 mb-2 rounded-lg">Manage User</li></NavLink>
               <NavLink to={'adminApprovePrimium'}><li className="bg-pink-700 text-white px-3 py-2 mb-2 rounded-lg">Approve Premium</li></NavLink>
               <NavLink to={'adminApproveContactReq'}><li className="bg-pink-700 text-white px-3 py-2 mb-2 rounded-lg">Approve Contact Request</li></NavLink>
+              <NavLink to={'adminSuccessStory'}><li className="bg-pink-700 text-white px-3 py-2 mb-2 rounded-lg">Success Storys</li></NavLink>
               <hr className=' h-[3px] bg-red-500 my-3' />
             </>}
           {/* --------------------------------------admin routes------------------------------------- */}
@@ -27,6 +28,7 @@ const DashBoard = () => {
           <NavLink to={'mycontactreq'}><li className="bg-pink-500 text-white px-3 py-2 mb-2 rounded-lg">My Contact Request</li></NavLink>
           <NavLink to={'favbiodata'}><li className="bg-pink-500 text-white px-3 py-2 mb-2 rounded-lg">Favourite Biodata</li></NavLink>
           <NavLink to={'married'}><li className="bg-pink-500 text-white px-3 py-2 mb-2 rounded-lg">Got Married</li></NavLink>
+          <hr className=' h-[4px] bg-red-500 my-3' />
           <li className="bg-red-500 text-white px-3 py-2 mb-2 rounded-lg">
             <button>Log Out</button>
           </li>
