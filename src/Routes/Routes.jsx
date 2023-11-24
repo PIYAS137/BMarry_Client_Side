@@ -10,6 +10,10 @@ import DashBoard from '../Layouts/DashBoard'
 import UserDashboard from '../UserDashboard/UserDashboard'
 import BioDataDetailsPage from '../Pages/BioDataPage/BioDataDetailsPage'
 import PaymentPage from '../Pages/PaymentPage/PaymentPage'
+import UserBioDataEdit from '../Pages/UserBioDataEdit/UserBioDataEdit'
+import UserBioDataView from '../Pages/UserBioDataView/UserBioDataView'
+import MyContactRequest from '../Pages/MyContactRequest/MyContactRequest'
+import FavBioDataPage from '../Pages/FavBioDataPage/FavBioDataPage'
 
 
 const router = createBrowserRouter([
@@ -57,7 +61,23 @@ const router = createBrowserRouter([
         children:[
             {
                 path:'userDashboard',
-                element:<UserDashboard/>
+                element:<UserDashboard/>,
+            },
+            {
+                path:'editdata',
+                element:<UserBioDataEdit/>
+            },
+            {
+                path:'viewdata',
+                element:<UserBioDataView/>
+            },
+            {
+                path:'mycontactreq',
+                element:<MyContactRequest/>
+            },
+            {
+                path:'favbiodata',
+                element:<FavBioDataPage/>
             }
         ]
     }
