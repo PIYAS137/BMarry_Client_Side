@@ -7,8 +7,8 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 
 const OnePremiereMemberCard = () => {
     return (
-        <Card sx={{ maxWidth: 400,background:'hotpink', marginBottom: '3rem', borderRadius: '1rem' }}>
-            <CardActionArea sx={{background:'pink'}}>
+        <Card sx={{ maxWidth: 400, background: 'hotpink', marginBottom: '3rem', borderRadius: '1rem' }}>
+            <CardActionArea sx={{ background: 'pink' }}>
                 <CardMedia
                     component="img"
                     height="140"

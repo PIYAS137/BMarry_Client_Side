@@ -1,3 +1,4 @@
+import HowWebWorkSection from "../../Components/HowWebWorkSection/HowWebWorkSection"
 import PremiereMembersSeciton from "../../Components/PremiereMembersSeciton/PremiereMembersSeciton"
 import SliderSection from "../../Components/Slider/SliderSection"
 
@@ -7,6 +8,7 @@ const HomePage = () => {
     <div>
         <SliderSection/>
         <PremiereMembersSeciton/>
+        <HowWebWorkSection/>
     </div>
   )
 }
