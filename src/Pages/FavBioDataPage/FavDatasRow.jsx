@@ -1,11 +1,6 @@
-import { TableCell, TableRow } from "@mui/material";
+import { TableCell, TableRow } from '@mui/material'
 
-
-
-
-const OneRow = ({data}) => {
-
-
+const FavDatasRow = ({ data }) => {
     return (
         (
             <TableRow>
@@ -16,15 +11,14 @@ const OneRow = ({data}) => {
                 <TableCell align="center">{data.phone}</TableCell>
                 <TableCell align="center">{data.email}</TableCell>
                 <TableCell align="center">
-                    <button className=" py-2 px-4 text-xs bg-red-500 text-white rounded-lg">Delete</button>
-                </TableCell>
-                <TableCell align="left">
                     <span className=" text-purple-700 font-bold">pending</span>
-                    {/* <span className=" text-green-600 font-bold">accepted</span> */}
+                </TableCell>
+                <TableCell align="center">
+                    <button className=" py-2 px-4 text-xs bg-red-500 text-white rounded-lg">Delete</button>
                 </TableCell>
             </TableRow>
         )
     )
 }
 
-export default OneRow
+export default FavDatasRow

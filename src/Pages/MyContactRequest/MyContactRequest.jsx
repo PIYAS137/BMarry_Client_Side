@@ -36,10 +36,10 @@ const MyContactRequest = () => {
           <Table sx={{ minWidth: 650,background:'#e9e9e9' }} aria-label="caption table">
             <TableHead>
               <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell align="center">Biodata Id</TableCell>
-                <TableCell align="right">Phone</TableCell>
-                <TableCell align="right">Email</TableCell>
+                <TableCell>His / Her Name</TableCell>
+                <TableCell align="center">His / Her Biodata Id</TableCell>
+                <TableCell align="center">His / Her Phone</TableCell>
+                <TableCell align="center">His / Her Email</TableCell>
                 <TableCell align="center">Action</TableCell>
                 <TableCell align="left">Status</TableCell>
               </TableRow>
