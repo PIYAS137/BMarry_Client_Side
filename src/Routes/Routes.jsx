@@ -8,6 +8,8 @@ import LoginPage from '../Pages/LoginPage/LoginPage'
 import RegistrationPage from '../Pages/RegistrationPage/RegistrationPage'
 import DashBoard from '../Layouts/DashBoard'
 import UserDashboard from '../UserDashboard/UserDashboard'
+import BioDataDetailsPage from '../Pages/BioDataPage/BioDataDetailsPage'
+import PaymentPage from '../Pages/PaymentPage/PaymentPage'
 
 
 const router = createBrowserRouter([
@@ -22,6 +24,14 @@ const router = createBrowserRouter([
             {
                 path:'/biodatas',
                 element:<BioDataPage/>
+            },
+            {
+                path:'/biodatas/sid',
+                element:<BioDataDetailsPage/>
+            },
+            {
+                path:'/payment',
+                element:<PaymentPage/>
             },
             {
                 path:'/about',
