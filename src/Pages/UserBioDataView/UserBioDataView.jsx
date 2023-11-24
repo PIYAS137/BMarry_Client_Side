@@ -5,7 +5,7 @@ const UserBioDataView = () => {
   return (
     <div>
       <SectionHeader small={'view how people see your details'} big={'View Biodata'} />
-      <div className="  max-w-xl mx-auto">
+      <div className="  max-w-2xl mx-auto">
         <div className=" bg-pink-100 flex justify-between rounded-lg">
           <div className=" p-5">
             <h1 className="text-lg font-semibold">Name : S M Piyas Mahamude Alif</h1>
@@ -29,6 +29,9 @@ const UserBioDataView = () => {
             <h1 className=" mt-2">Biodata Id : 100</h1>
             <h1>Gender : Male</h1>
           </div>
+        </div>
+        <div className=" flex  justify-center">
+          <button className=" py-3 px-5 bg-blue-400 rounded-lg text-white mt-3">Make Biodata To Premium</button>
         </div>
       </div>
     </div>
