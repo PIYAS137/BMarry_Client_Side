@@ -5,9 +5,9 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 
-const OnePremiereMemberCard = () => {
+const UserCard = () => {
     return (
-        <Card sx={{ maxWidth: 400, background:'#ffa0d0' , marginBottom: '3rem', borderRadius: '1rem' }}>
+        <Card sx={{ maxWidth: 300, background:'#ffa0d0' , marginBottom: '1.2rem', borderRadius: '1rem' }}>
             <CardActionArea sx={{ background: 'pink' }}>
                 <CardMedia
                     component="img"
@@ -34,4 +34,4 @@ const OnePremiereMemberCard = () => {
     )
 }
 
-export default OnePremiereMemberCard
+export default UserCard;

@@ -7,7 +7,7 @@ const Root = () => {
     return (
         <div>
             <AppNavbar />
-            <div className=" max-w-[1480px] mx-auto">
+            <div className=" max-w-[1480px] mx-auto ">
                 <Outlet />
             </div>
                 <AppFooter/>
