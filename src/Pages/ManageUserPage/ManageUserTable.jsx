@@ -27,15 +27,15 @@ const datas = [
 const ManageUserTable = () => {
     return (
         <>
-            <div className=' px-4 py-10'>
+            <div className=' px-4 py-10 max-w-6xl mx-auto'>
                 <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 650, background: '#e9e9e9' }} aria-label="caption table">
-                        <TableHead>
+                        <TableHead sx={{background:'pink'}}>
                             <TableRow>
-                                <TableCell>User Name</TableCell>
-                                <TableCell align="center">User Email</TableCell>
-                                <TableCell align="center">Make Admin</TableCell>
-                                <TableCell align="center">Make Premium</TableCell>
+                                <TableCell sx={{fontWeight:'bold'}}>User Name</TableCell>
+                                <TableCell sx={{fontWeight:'bold'}} align="center">User Email</TableCell>
+                                <TableCell sx={{fontWeight:'bold'}} align="center">Make Admin</TableCell>
+                                <TableCell sx={{fontWeight:'bold'}} align="center">Make Premium</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

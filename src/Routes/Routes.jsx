@@ -18,6 +18,7 @@ import AdminDashboardPage from '../Pages/AdminDashboardPage/AdminDashboardPage'
 import ManageUserPage from '../Pages/ManageUserPage/ManageUserPage'
 import ApprovePremiumPage from '../Pages/ApprovePremiumPage/ApprovePremiumPage'
 import ApproveContactReqPage from '../Pages/ApproveContactReqPage/ApproveContactReqPage'
+import GotMarriedPage from '../Pages/GotMarriedPage/GotMarriedPage'
 
 
 const router = createBrowserRouter([
@@ -100,6 +101,10 @@ const router = createBrowserRouter([
             {
                 path: 'favbiodata',
                 element: <FavBioDataPage />
+            },
+            {
+                path:'married',
+                element:<GotMarriedPage/>
             }
         ]
     }

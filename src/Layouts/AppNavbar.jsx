@@ -27,6 +27,7 @@ function AppNavbar() {
         backgroundColor: 'pink',
         color: 'black',
         display: 'block',
+        borderRadius:'.5rem'
     };
 
     const inactiveLinkStyle = {
@@ -93,6 +94,17 @@ function AppNavbar() {
             }}
         >
             Dashboard
+        </Button>
+        <Button
+            component={NavLink}
+            to={'dashboard/adminDashboard'}
+            onClick={handleCloseNavMenu}
+            sx={{
+                ...inactiveLinkStyle, // Existing styles
+                ...(location.pathname === 'dashboard/userDashboard' ? activeLinkStyle : {}), // Conditional active styles
+            }}
+        >
+           Admin Dashboard
         </Button>
         <Button
             component={NavLink}

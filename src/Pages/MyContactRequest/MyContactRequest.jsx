@@ -29,19 +29,19 @@ const MyContactRequest = () => {
   return (
     <div>
       <div>
-        <SectionHeader small={'View your reqests'} big={"My Contact Request"}/>
+        <SectionHeader small={'View your reqests'} big={"My Contact Request"} />
       </div>
-      <div className=' px-4'>
+      <div className=' px-4 max-w-6xl mx-auto'>
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650,background:'#e9e9e9' }} aria-label="caption table">
-            <TableHead>
+          <Table sx={{ minWidth: 650, background: '#e9e9e9' }} aria-label="caption table">
+            <TableHead sx={{background:'pink'}}>
               <TableRow>
-                <TableCell>His / Her Name</TableCell>
-                <TableCell align="center">His / Her Biodata Id</TableCell>
-                <TableCell align="center">His / Her Phone</TableCell>
-                <TableCell align="center">His / Her Email</TableCell>
-                <TableCell align="center">Action</TableCell>
-                <TableCell align="left">Status</TableCell>
+                <TableCell sx={{ fontWeight: 'bold' }}>His / Her Name</TableCell>
+                <TableCell sx={{ fontWeight: 'bold' }} align="center">His / Her Biodata Id</TableCell>
+                <TableCell sx={{ fontWeight: 'bold' }} align="center">His / Her Phone</TableCell>
+                <TableCell sx={{ fontWeight: 'bold' }} align="center">His / Her Email</TableCell>
+                <TableCell sx={{ fontWeight: 'bold' }} align="center">Action</TableCell>
+                <TableCell sx={{ fontWeight: 'bold' }} align="left">Status</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

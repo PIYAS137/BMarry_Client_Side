@@ -26,11 +26,12 @@ const DashBoard = () => {
           <NavLink to={'viewdata'}><li className="bg-pink-500 text-white px-3 py-2 mb-2 rounded-lg">View Biodata</li></NavLink>
           <NavLink to={'mycontactreq'}><li className="bg-pink-500 text-white px-3 py-2 mb-2 rounded-lg">My Contact Request</li></NavLink>
           <NavLink to={'favbiodata'}><li className="bg-pink-500 text-white px-3 py-2 mb-2 rounded-lg">Favourite Biodata</li></NavLink>
+          <NavLink to={'married'}><li className="bg-pink-500 text-white px-3 py-2 mb-2 rounded-lg">Got Married</li></NavLink>
           <li className="bg-red-500 text-white px-3 py-2 mb-2 rounded-lg">
             <button>Log Out</button>
           </li>
-          <li className="bg-green-500 text-black px-3 py-2 mb-2 rounded-lg">
-            <button>Back To Home Page</button>
+          <li className="bg-green-500  text-black px-3 py-2 mb-2 rounded-lg">
+            <NavLink to={'/'}><button>Back To Home Page</button></NavLink>
           </li>
         </ul>
       </nav>

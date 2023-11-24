@@ -29,19 +29,19 @@ const FavBioDataPage = () => {
   return (
     <div>
       <div>
-        <SectionHeader small={'View your favourte biodatas'} big={"My Favourite Biodata"}/>
+        <SectionHeader small={'View your favourte biodatas'} big={"My Favourite Biodata"} />
       </div>
-      <div className=' px-4'>
+      <div className=' px-4 max-w-6xl mx-auto'>
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650,background:'#e9e9e9' }} aria-label="caption table">
-            <TableHead>
+          <Table sx={{ minWidth: 650, background: '#e9e9e9' }} aria-label="caption table">
+            <TableHead sx={{background:'pink'}}>
               <TableRow>
-                <TableCell>His / Her Name</TableCell>
-                <TableCell align="center">His / Her Biodata Id</TableCell>
-                <TableCell align="center">His / Her Permanent Address</TableCell>
-                <TableCell align="center">His / Her Email</TableCell>
-                <TableCell align="center">His / Her Occupation</TableCell>
-                <TableCell align="center">Action</TableCell>
+                <TableCell sx={{ fontWeight: 'bold' }}>His / Her Name</TableCell>
+                <TableCell sx={{ fontWeight: 'bold' }} align="center">His / Her Biodata Id</TableCell>
+                <TableCell sx={{ fontWeight: 'bold' }} align="center">His / Her Permanent Address</TableCell>
+                <TableCell sx={{ fontWeight: 'bold' }} align="center">His / Her Email</TableCell>
+                <TableCell sx={{ fontWeight: 'bold' }} align="center">His / Her Occupation</TableCell>
+                <TableCell sx={{ fontWeight: 'bold' }} align="center">Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
