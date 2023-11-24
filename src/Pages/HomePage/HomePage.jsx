@@ -2,6 +2,7 @@ import HowWebWorkSection from "../../Components/HowWebWorkSection/HowWebWorkSect
 import PremiereMembersSeciton from "../../Components/PremiereMembersSeciton/PremiereMembersSeciton"
 import SliderSection from "../../Components/Slider/SliderSection"
 import SuccessCounter from "../../Components/SuccessCounterSection/SuccessCounter"
+import SuccessStorySection from "../../Components/SuccessStorySection/SuccessStorySection"
 
 
 const HomePage = () => {
@@ -11,6 +12,7 @@ const HomePage = () => {
         <PremiereMembersSeciton/>
         <HowWebWorkSection/>
         <SuccessCounter/>
+        <SuccessStorySection/>
     </div>
   )
 }
