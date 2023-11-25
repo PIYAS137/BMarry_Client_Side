@@ -1,6 +1,5 @@
 import SectionHeader from "../SectionHeader/SectionHeader"
-import React, { PureComponent } from 'react';
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer, Legend } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
 
 const AdminStatistics = () => {
 
@@ -27,8 +26,6 @@ const AdminStatistics = () => {
     };
 
 
-
-
     return (
         <div className=" w-full h-[400px] ">
             <SectionHeader big={'Statistics View'} small={'show all data as quantitative order'} />
@@ -49,7 +46,7 @@ const AdminStatistics = () => {
                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
                         </Pie>
-                        <Legend/>
+                        <Legend />
                     </PieChart>
                 </ResponsiveContainer>
             </div>

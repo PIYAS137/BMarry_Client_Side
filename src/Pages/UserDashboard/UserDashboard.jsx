@@ -1,5 +1,5 @@
-import { FaDharmachakra, FaFemale, FaMoneyBillAlt, FaUser, FaUsers } from "react-icons/fa"
-import SectionHeader from "../../../Components/SectionHeader/SectionHeader"
+import { FaMoneyBillAlt, FaUsers } from "react-icons/fa"
+import SectionHeader from "../../Components/SectionHeader/SectionHeader"
 
 
 const UserDashboard = () => {
