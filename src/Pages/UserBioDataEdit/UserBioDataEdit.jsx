@@ -1,11 +1,28 @@
 import { useForm } from "react-hook-form"
+import useSecureAxios from "../../hooks/secureAxiosDataFetchHook/useSecureAxios";
+import Swal from "sweetalert2";
+import usePublicAxiosHook from "../../hooks/publicAxiosDataFetchHook/usePublicAxiosHook";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../Context/FirebaseAuthContext";
+import { useNavigate } from "react-router-dom";
+
+
+const IMGBB_URL = `https://api.imgbb.com/1/upload?expiration=600&key=${import.meta.env.VITE_IMGBB_SECURITY_KEY}`
 
 const UserBioDataEdit = () => {
 
+  const [userData, setUserData] = useState({})
+  const { user } = useContext(AuthContext)
+  const secureAxios = useSecureAxios()
+  const publicAxios = usePublicAxiosHook()
+  const navigate = useNavigate()
 
-  // 
-
-
+  useEffect(() => {
+    secureAxios.get(`/biodata/${user?.email}`)
+      .then(res => {
+        setUserData(res.data)
+      })
+  }, [user])
 
   const calculateAge = (n) => {
     const birthDate = new Date(n);
@@ -21,12 +38,85 @@ const UserBioDataEdit = () => {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm()
 
+  useEffect(()=>{
+    setValue('name',userData?.name || user?.displayName);
+    setValue('age',userData?.age || '');
+    setValue('image',userData?.biodata_image || user?.photoURL || '');
+    setValue('gender',userData?.gender || 'male');
+    setValue('date',userData?.birth || '');
+    setValue('height',userData?.height || 'medium');
+    setValue('weight',userData?.weight || 'medium');
+    setValue('race',userData?.race || 'Khan');
+    setValue('occupation',userData?.occupation || 'employee');
+    setValue('father',userData?.father_name || '');
+    setValue('mother',userData?.mother_name || '');
+    setValue('permanent',userData?.parmanent_address || 'Dhaka');
+    setValue('present',userData?.present_address || 'Dhaka');
+    setValue('partnerage',userData?.expected_age || 25);
+    setValue('partnerheight',userData?.expected_height || 'medium');
+    setValue('partnerweight',userData?.expected_weight || 'medium');
+    setValue('email',userData?.email || '');
+    setValue('phonenumber',userData?.phone || '');
+  },[userData,setValue])
+
   const onSubmit = (data) => {
-    console.log(data)
-    const calculatedFinalAge = calculateAge(data.date)
-    console.log(calculatedFinalAge);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Sure!"
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const imageFile = { image: data.image[0] };
+        const res = await publicAxios.post(IMGBB_URL, imageFile, {
+          headers: {
+            'content-type': 'multipart/form-data'
+          }
+        })
+        const imageUrl = res.data.data.display_url;
+        const calculatedFinalAge = calculateAge(data.date)
+        const newBioData = {
+          name: data.name,
+          age: calculatedFinalAge,
+          biodata_image: imageUrl,
+          gender: data.gender,
+          birth: data.date,
+          height: data.height,
+          weight: data.weight,
+          race: data.race,
+          occupation: data.occupation,
+          father_name: data.father,
+          mother_name: data.mother,
+          parmanent_address: data.permanent,
+          present_address: data.present,
+          expected_age: data.partnerage,
+          expected_height: data.partnerheight,
+          expected_weight: data.partnerweight,
+          email: user.email,
+          phone: data.phonenumber
+        };
+
+        secureAxios.put(`/biodata/${user.email}`, newBioData)
+          .then(res => {
+            console.log(res);
+            if (res.data.modifiedCount > 0 || res.data.insertedId) {
+              Swal.fire({
+                title: "Successfully Done!",
+                text: "Your file has been deleted.",
+                icon: "success"
+              });
+              navigate('/dashboard/viewdata')
+            }
+          })
+      }
+    });
+
   }
 
 
@@ -38,9 +128,10 @@ const UserBioDataEdit = () => {
         <small>Enter Name</small>
         <input {...register("name", { required: true })} className=" px-3 py-2 text-lg rounded-lg w-full mb-3" placeholder="Enter Your Name" />
         {errors.name && <span className="block -mt-3 text-red-500">This field is required</span>}
+        
         <small>Enter Photo URL</small>
-        <input {...register("photoUrl", { required: true })} className="bg-blue-400 text-white px-3 py-2 text-lg rounded-lg w-full mb-3" placeholder="Enter your photo URL" type="file" />
-        {errors.photoUrl && <span className="block -mt-3 text-red-500">This field is required</span>}
+        <input {...register("image",{required:true})} className="bg-blue-400 text-white px-3 py-2 text-lg rounded-lg w-full mb-3" placeholder="Enter your photo URL" type="file" />
+        {errors.image && <span className="block -mt-3 text-red-500">This field is required</span>}
 
         <small>Select your Gender</small>
         <select className=" px-3 py-2 text-lg rounded-lg w-full mb-3"  {...register("gender", { required: true })}>
@@ -102,11 +193,11 @@ const UserBioDataEdit = () => {
         {errors.occupation && <span className="block -mt-3 text-red-500">This field is required</span>}
 
         <small>Enter your fathers name</small>
-        <input {...register("father", { required: true })} type="text" className=" px-3 py-2 text-lg rounded-lg w-full mb-3" placeholder="Enter your photo URL" />
+        <input {...register("father", { required: true })} type="text" className=" px-3 py-2 text-lg rounded-lg w-full mb-3" placeholder="Enter your father name" />
         {errors.father && <span className="block -mt-3 text-red-500">This field is required</span>}
 
         <small>Enter your mothers name</small>
-        <input {...register("mother", { required: true })} type="text" className=" px-3 py-2 text-lg rounded-lg w-full mb-3" placeholder="Enter your photo URL" />
+        <input {...register("mother", { required: true })} type="text" className=" px-3 py-2 text-lg rounded-lg w-full mb-3" placeholder="Enter your mother name" />
         {errors.mother && <span className="block -mt-3 text-red-500">This field is required</span>}
 
         <small>Enter Parmanent Division</small>
@@ -157,13 +248,13 @@ const UserBioDataEdit = () => {
         {errors.partnerweight && <span className="block -mt-3 text-red-500">This field is required</span>}
 
         <small>My Email</small>
-        <input defaultValue={'piyas@gmail.com'} disabled {...register("myemail")} type="email" className="border border-gray-400 px-3 py-2 text-lg rounded-lg w-full mb-3" placeholder="Enter your photo URL" />
+        <input defaultValue={user.email} disabled {...register("myemail")} type="email" className="border border-gray-400 px-3 py-2 text-lg rounded-lg w-full mb-3" placeholder="Enter your photo URL" />
 
         <small>Phone Number</small>
-        <input {...register("phonenumber", { required: true })} type="number" className=" px-3 py-2 text-lg rounded-lg w-full mb-3" placeholder="Enter your photo URL" />
+        <input {...register("phonenumber", { required: true })} type="number" className=" px-3 py-2 text-lg rounded-lg w-full mb-3" placeholder="Enter your phone number" />
         {errors.phonenumber && <span className="block -mt-3 text-red-500">This field is required</span>}
 
-        <input className="px-5 py-2 bg-blue-400 text-white rounded-lg w-full mb-3" type="submit" />
+        <input className="px-5 py-2 cursor-pointer bg-blue-400 text-white rounded-lg w-full mb-3" type="submit" />
       </form>
     </div>
   )
