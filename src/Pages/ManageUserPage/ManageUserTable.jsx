@@ -8,23 +8,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import ManageTableRow from './ManageTableRow';
 
-const datas = [
-    {
-        name: 'piyas',
-        id: 12,
-        phone: 123,
-        email: 'asdfasf'
-    },
-    {
-        name: 'piyas',
-        id: 13,
-        phone: 123,
-        email: 'asdfasf'
-    }
-]
 
-
-const ManageUserTable = () => {
+const ManageUserTable = ({datas}) => {
     return (
         <>
             <div className=' px-4 py-10 max-w-6xl mx-auto'>

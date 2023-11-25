@@ -2,11 +2,10 @@ import { useForm } from "react-hook-form"
 
 const UserBioDataEdit = () => {
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm()
+
+  // 
+
+
 
   const calculateAge = (n) => {
     const birthDate = new Date(n);
@@ -18,6 +17,11 @@ const UserBioDataEdit = () => {
     }
     return ageInYears
   }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
 
   const onSubmit = (data) => {
     console.log(data)
@@ -46,7 +50,6 @@ const UserBioDataEdit = () => {
         {errors.gender && <span className="block -mt-3 text-red-500">This field is required</span>}
 
 
-        <small className="block text-purple-400">(Your Age will Auto generate by date of birth)</small>
         <small>Enter your birthday</small>
         <input {...register("date", { required: true })} type="date" className=" px-3 py-2 text-lg rounded-lg w-full mb-3" placeholder="Enter your photo URL" />
         {errors.date && <span className="block -mt-3 text-red-500">This field is required</span>}

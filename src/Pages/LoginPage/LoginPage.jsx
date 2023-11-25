@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../Context/FirebaseAuthContext";
 import Swal from "sweetalert2";
+import usePublicAxiosHook from "../../hooks/publicAxiosDataFetchHook/usePublicAxiosHook";
 
 
 const LoginPage = () => {
@@ -12,6 +13,7 @@ const LoginPage = () => {
   const [pass, setPass] = useState('')
 
   const navigate = useNavigate()
+  const publicAxios = usePublicAxiosHook()
 
 
   const handleSubmitLoginUser = (event) => {
@@ -42,16 +44,24 @@ const LoginPage = () => {
   const handleClickGoogleLogin = () => {
     Firebase_Google_Login()
       .then(res => {
-        if (res) {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Login Successfull !",
-            showConfirmButton: false,
-            timer: 2000
-          });
-          navigate('/')
+        const newUser = {
+          name: res.user.displayName,
+          email: res.user.email,
+          photo: res.user.photoURL,
+          role: '',
+          is_premium: false,
         }
+        publicAxios.put('/users', newUser)
+          .then(res => {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Login Successfull !",
+              showConfirmButton: false,
+              timer: 2000
+            });
+            navigate('/')
+          })
       }).catch()
   }
 
