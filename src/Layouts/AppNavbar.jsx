@@ -13,10 +13,13 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { NavLink, useLocation } from 'react-router-dom'
+import { AuthContext } from '../Context/FirebaseAuthContext';
 
 
 
 function AppNavbar() {
+    const { user ,Firebase_Logout_User } = React.useContext(AuthContext);
+    console.log(user);
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -27,7 +30,7 @@ function AppNavbar() {
         backgroundColor: 'pink',
         color: 'black',
         display: 'block',
-        borderRadius:'.5rem'
+        borderRadius: '.5rem'
     };
 
     const inactiveLinkStyle = {
@@ -50,7 +53,17 @@ function AppNavbar() {
         setAnchorElUser(null);
     };
 
-    const NavLinks = <Box sx={{ display: { xs: 'flex'}, mr: 1 }}>
+    const handleLogOutUser=()=>{
+        Firebase_Logout_User()
+        .then().catch()
+    }
+
+
+
+
+
+
+    const NavLinks = <Box sx={{ display: { xs: 'flex' }, mr: 1 }}>
         <Button
             component={NavLink}
             to={'/'}
@@ -104,7 +117,7 @@ function AppNavbar() {
                 ...(location.pathname === 'dashboard/userDashboard' ? activeLinkStyle : {}), // Conditional active styles
             }}
         >
-           Admin Dashboard
+            Admin Dashboard
         </Button>
         <Button
             component={NavLink}
@@ -148,7 +161,7 @@ function AppNavbar() {
             onClick={handleCloseNavMenu}
             sx={{
                 ...inactiveLinkStyle, // Existing styles
-                ...(location.pathname === '/contact' ? activeLinkStyle : {}), // Conditional active styles
+                ...(location.pathname === '/about' ? activeLinkStyle : {}), // Conditional active styles
             }}
         >
             <Typography textAlign="center">About</Typography>
@@ -159,7 +172,7 @@ function AppNavbar() {
             onClick={handleCloseNavMenu}
             sx={{
                 ...inactiveLinkStyle, // Existing styles
-                ...(location.pathname === '/contact' ? activeLinkStyle : {}), // Conditional active styles
+                ...(location.pathname === '/dashboard' ? activeLinkStyle : {}), // Conditional active styles
             }}
         >
             <Typography textAlign="center">Dashboard</Typography>
@@ -259,24 +272,37 @@ function AppNavbar() {
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp"  />
+                                {
+                                    user?.photoURL ?
+                                    <Avatar src={user?.photoURL} alt="Remy Sharp" />
+                                    :
+                                    <Avatar alt="Remy Sharp" />
+                                }
                             </IconButton>
                         </Tooltip>
                     </Box>
-                    <Button
-                        component={NavLink}
-                        to={'/login'}
-                        onClick={handleCloseNavMenu}
-                        sx={{ background: 'green', color: 'white',fontWeight:700, padding: '.5rem 1rem', marginLeft: '1rem' }}
-                    >
-                        Login
-                    </Button>
-                    <Button
-                        onClick={handleCloseNavMenu}
-                        sx={{ background: 'purple', color: 'white',fontWeight:700, padding: '.5rem 1rem', marginLeft: '1rem' }}
-                    >
-                        Logout
-                    </Button>
+
+
+
+                    {!user?.email ?
+                        <Button
+                            component={NavLink}
+                            to={'/login'}
+                            sx={{ background: 'green', color: 'white', fontWeight: 700, padding: '.5rem 1rem', marginLeft: '1rem' }}
+                        >
+                            Login
+                        </Button>
+                        :
+                        <Button
+                            onClick={handleLogOutUser}
+                            sx={{ background: '#e43c3c', color: 'white', fontWeight: 700, padding: '.5rem 1rem', marginLeft: '1rem' }}
+                        >
+                            Logout
+                        </Button>
+                    }
+
+
+
                 </Toolbar>
             </Container>
         </AppBar>

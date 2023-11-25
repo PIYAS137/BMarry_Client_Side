@@ -8,8 +8,21 @@ const UserBioDataEdit = () => {
     formState: { errors },
   } = useForm()
 
+  const calculateAge = (n) => {
+    const birthDate = new Date(n);
+    const today = new Date();
+    let ageInYears = today.getFullYear() - birthDate.getFullYear();
+    const birthdayPassedAway = today.getMonth() > birthDate.getMonth() || (today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate());
+    if (!birthdayPassedAway) {
+      ageInYears--;
+    }
+    return ageInYears
+  }
+
   const onSubmit = (data) => {
     console.log(data)
+    const calculatedFinalAge = calculateAge(data.date)
+    console.log(calculatedFinalAge);
   }
 
 
@@ -32,6 +45,8 @@ const UserBioDataEdit = () => {
         </select>
         {errors.gender && <span className="block -mt-3 text-red-500">This field is required</span>}
 
+
+        <small className="block text-purple-400">(Your Age will Auto generate by date of birth)</small>
         <small>Enter your birthday</small>
         <input {...register("date", { required: true })} type="date" className=" px-3 py-2 text-lg rounded-lg w-full mb-3" placeholder="Enter your photo URL" />
         {errors.date && <span className="block -mt-3 text-red-500">This field is required</span>}
@@ -74,10 +89,6 @@ const UserBioDataEdit = () => {
           <option value="Das">Das</option>
         </select>
         {errors.race && <span className="block -mt-3 text-red-500">This field is required</span>}
-
-        <small>Your Age (Auto generate)</small>
-        <input {...register("age", { required: true })} type="number" className=" px-3 py-2 text-lg rounded-lg w-full mb-3" placeholder="Enter your photo URL" />
-        {errors.age && <span className="block -mt-3 text-red-500">This field is required</span>}
 
         <small>Select Your Occupation</small>
         <select className=" px-3 py-2 text-lg rounded-lg w-full mb-3"  {...register("occupation", { required: true })}>
@@ -149,7 +160,7 @@ const UserBioDataEdit = () => {
         <input {...register("phonenumber", { required: true })} type="number" className=" px-3 py-2 text-lg rounded-lg w-full mb-3" placeholder="Enter your photo URL" />
         {errors.phonenumber && <span className="block -mt-3 text-red-500">This field is required</span>}
 
-        <input className="px-5 py-2 bg-blue-400 text-white rounded-lg w-full mb-3" type="submit"  />
+        <input className="px-5 py-2 bg-blue-400 text-white rounded-lg w-full mb-3" type="submit" />
       </form>
     </div>
   )
