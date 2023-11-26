@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import useSecureAxios from "../../hooks/secureAxiosDataFetchHook/useSecureAxios";
 import { Link } from "react-router-dom";
+import usePublicAxiosHook from "../../hooks/publicAxiosDataFetchHook/usePublicAxiosHook";
 
 const SimilarBioDatas = ({genderStatus}) => {
 
-    const secureAxios = useSecureAxios()
+    const publicAxios = usePublicAxiosHook()
     const {data : similarDatas = []} = useQuery({
         queryKey: ['similarDataInfo'],
         queryFn: async()=>{
-            const res = await secureAxios.get(`/similar?gender=${genderStatus}`)
+            const res = await publicAxios.get(`/similar?gender=${genderStatus}`)
             console.log(res.data);
             return res.data;
         }

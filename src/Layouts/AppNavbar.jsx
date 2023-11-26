@@ -14,14 +14,16 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { NavLink, useLocation } from 'react-router-dom'
 import { AuthContext } from '../Context/FirebaseAuthContext';
+import useGetAdminStatus from '../hooks/getAdminStatusHook/useGetAdminStatus';
 
 
 
 function AppNavbar() {
-    const { user ,Firebase_Logout_User } = React.useContext(AuthContext);
+    const { user, Firebase_Logout_User } = React.useContext(AuthContext);
     console.log(user);
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const [adminStatus] = useGetAdminStatus();
 
     const location = useLocation();
 
@@ -53,15 +55,10 @@ function AppNavbar() {
         setAnchorElUser(null);
     };
 
-    const handleLogOutUser=()=>{
+    const handleLogOutUser = () => {
         Firebase_Logout_User()
-        .then().catch()
+            .then().catch()
     }
-
-
-
-
-
 
     const NavLinks = <Box sx={{ display: { xs: 'flex' }, mr: 1 }}>
         <Button
@@ -97,28 +94,33 @@ function AppNavbar() {
         >
             About
         </Button>
-        <Button
-            component={NavLink}
-            to={'dashboard/userDashboard'}
-            onClick={handleCloseNavMenu}
-            sx={{
-                ...inactiveLinkStyle, // Existing styles
-                ...(location.pathname === 'dashboard/userDashboard' ? activeLinkStyle : {}), // Conditional active styles
-            }}
-        >
-            Dashboard
-        </Button>
-        <Button
-            component={NavLink}
-            to={'dashboard/adminDashboard'}
-            onClick={handleCloseNavMenu}
-            sx={{
-                ...inactiveLinkStyle, // Existing styles
-                ...(location.pathname === 'dashboard/userDashboard' ? activeLinkStyle : {}), // Conditional active styles
-            }}
-        >
-            Admin Dashboard
-        </Button>
+
+        {!adminStatus ?
+            <Button
+                component={NavLink}
+                to={'dashboard/userDashboard'}
+                onClick={handleCloseNavMenu}
+                sx={{
+                    ...inactiveLinkStyle, // Existing styles
+                    ...(location.pathname === 'dashboard/userDashboard' ? activeLinkStyle : {}), // Conditional active styles
+                }}
+            >
+                Dashboard
+            </Button>
+            :
+            <Button
+                component={NavLink}
+                to={'dashboard/adminDashboard'}
+                onClick={handleCloseNavMenu}
+                sx={{
+                    ...inactiveLinkStyle, // Existing styles
+                    ...(location.pathname === 'dashboard/userDashboard' ? activeLinkStyle : {}), // Conditional active styles
+                }}
+            >
+                Admin Dashboard
+            </Button>
+        }
+
         <Button
             component={NavLink}
             to={'/contact'}
@@ -190,7 +192,6 @@ function AppNavbar() {
         </MenuItem>
     </Box>
 
-
     return (
         <AppBar position="static">
             <Container maxWidth="xl">
@@ -213,7 +214,6 @@ function AppNavbar() {
                     >
                         BIYE
                     </Typography>
-
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
@@ -268,22 +268,18 @@ function AppNavbar() {
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {NavLinks}
                     </Box>
-
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                 {
                                     user?.photoURL ?
-                                    <Avatar src={user?.photoURL} alt="Remy Sharp" />
-                                    :
-                                    <Avatar alt="Remy Sharp" />
+                                        <Avatar src={user?.photoURL} alt="Remy Sharp" />
+                                        :
+                                        <Avatar alt="Remy Sharp" />
                                 }
                             </IconButton>
                         </Tooltip>
                     </Box>
-
-
-
                     {!user?.email ?
                         <Button
                             component={NavLink}
@@ -300,9 +296,6 @@ function AppNavbar() {
                             Logout
                         </Button>
                     }
-
-
-
                 </Toolbar>
             </Container>
         </AppBar>

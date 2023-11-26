@@ -1,13 +1,18 @@
 import { useQuery } from '@tanstack/react-query'
-import usePublicAxiosHook from '../publicAxiosDataFetchHook/usePublicAxiosHook'
+import useSecureAxios from '../secureAxiosDataFetchHook/useSecureAxios'
+import { useContext } from 'react'
+import { AuthContext } from '../../Context/FirebaseAuthContext'
 
 
 const useGetAllUsers = () => {
-    const publicAxios = usePublicAxiosHook();
+    const secureAxios = useSecureAxios()
+    const {user,loader} = useContext(AuthContext)
+    
     const { refetch ,data : allUsers = []} = useQuery({
         queryKey: ['gau'],
+        enabled: !loader,
         queryFn: async () => {
-            const res = await publicAxios.get('/users')
+            const res = await secureAxios.get(`/users/${user?.email}`)
             return res.data
         }
     })

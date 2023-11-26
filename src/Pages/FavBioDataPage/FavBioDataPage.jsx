@@ -8,24 +8,31 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import SectionHeader from '../../Components/SectionHeader/SectionHeader';
 import FavDatasRow from './FavDatasRow';
+import { useQuery } from '@tanstack/react-query';
+import { AuthContext } from '../../Context/FirebaseAuthContext';
+import usePublicAxiosHook from '../../hooks/publicAxiosDataFetchHook/usePublicAxiosHook';
 
-const datas = [
-  {
-    name: 'piyas',
-    id: 12,
-    phone: 123,
-    email: 'asdfasf'
-  },
-  {
-    name: 'piyas',
-    id: 13,
-    phone: 123,
-    email: 'asdfasf'
-  }
-]
+
 
 
 const FavBioDataPage = () => {
+
+  const { user } = React.useContext(AuthContext);
+  const publicAxios = usePublicAxiosHook();
+
+
+
+  const {refetch, data : myFavDatas = []} = useQuery({
+    queryKey: ['getMyFavInfo'],
+    queryFn: async()=>{
+      const res = await publicAxios.get(`/myFavs/${user?.email}`)
+      return res.data;
+    }
+  })
+  console.log(myFavDatas);
+
+
+
   return (
     <div>
       <div>
@@ -39,13 +46,13 @@ const FavBioDataPage = () => {
                 <TableCell sx={{ fontWeight: 'bold' }}>His / Her Name</TableCell>
                 <TableCell sx={{ fontWeight: 'bold' }} align="center">His / Her Biodata Id</TableCell>
                 <TableCell sx={{ fontWeight: 'bold' }} align="center">His / Her Permanent Address</TableCell>
-                <TableCell sx={{ fontWeight: 'bold' }} align="center">His / Her Email</TableCell>
                 <TableCell sx={{ fontWeight: 'bold' }} align="center">His / Her Occupation</TableCell>
+                <TableCell sx={{ fontWeight: 'bold' }} align="center">View</TableCell>
                 <TableCell sx={{ fontWeight: 'bold' }} align="center">Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {datas.map((row, i) => <FavDatasRow key={i} data={row} />)}
+              {myFavDatas?.map((row) => <FavDatasRow key={row._id} refetch={refetch} data={row} />)}
             </TableBody>
           </Table>
         </TableContainer>

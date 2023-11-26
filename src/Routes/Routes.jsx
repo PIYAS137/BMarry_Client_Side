@@ -21,6 +21,7 @@ import ApproveContactReqPage from '../Pages/ApproveContactReqPage/ApproveContact
 import GotMarriedPage from '../Pages/GotMarriedPage/GotMarriedPage'
 import UsersSuccessStoryPage from '../Pages/UsersSuccessStoryPage/UsersSuccessStoryPage'
 import UserPrivateRoutes from '../Private/UserPrivateRoutes/UserPrivateRoutes'
+import AdminPrivateRoutes from '../Private/AdminPrivateRoutes/AdminPrivateRoutes'
 
 
 const router = createBrowserRouter([
@@ -43,7 +44,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/payment',
-                element: <PaymentPage />
+                element:<PaymentPage />
             },
             {
                 path: '/about',
@@ -65,53 +66,53 @@ const router = createBrowserRouter([
     },
     {
         path: 'dashboard',
-        element: <DashBoard />,
+        element: <UserPrivateRoutes><DashBoard /></UserPrivateRoutes>,
         children: [
             // --------------admin routes--------------
             {
                 path: 'adminDashboard',
-                element: <AdminDashboardPage />
+                element: <AdminPrivateRoutes><AdminDashboardPage /></AdminPrivateRoutes>
             },
             {
                 path: 'adminManageUser',
-                element: <ManageUserPage />
+                element: <AdminPrivateRoutes><ManageUserPage /></AdminPrivateRoutes>
             },
             {
                 path: 'adminApprovePrimium',
-                element: <ApprovePremiumPage />
+                element: <AdminPrivateRoutes><ApprovePremiumPage /></AdminPrivateRoutes>
             },
             {
                 path: 'adminApproveContactReq',
-                element: <ApproveContactReqPage />
+                element: <AdminPrivateRoutes><ApproveContactReqPage /></AdminPrivateRoutes>
             },
             {
                 path:'adminSuccessStory',
-                element:<UsersSuccessStoryPage/>
+                element:<AdminPrivateRoutes><UsersSuccessStoryPage/></AdminPrivateRoutes>
             },
             // --------------admin routes--------------
             {
                 path: 'userDashboard',
-                element: <UserDashboard />,
+                element: <UserPrivateRoutes><UserDashboard /></UserPrivateRoutes>,
             },
             {
                 path: 'editdata',
-                element: <UserBioDataEdit />
+                element: <UserPrivateRoutes><UserBioDataEdit /></UserPrivateRoutes>
             },
             {
                 path: 'viewdata',
-                element: <UserBioDataView />
+                element: <UserPrivateRoutes><UserBioDataView /></UserPrivateRoutes>
             },
             {
                 path: 'mycontactreq',
-                element: <MyContactRequest />
+                element: <UserPrivateRoutes><MyContactRequest /></UserPrivateRoutes>
             },
             {
                 path: 'favbiodata',
-                element: <FavBioDataPage />
+                element: <UserPrivateRoutes><FavBioDataPage /></UserPrivateRoutes>
             },
             {
                 path:'married',
-                element:<GotMarriedPage/>
+                element: <UserPrivateRoutes><GotMarriedPage/></UserPrivateRoutes>
             }
         ]
     }

@@ -5,10 +5,10 @@
 .activeNavLink::after{
     content: '';
     position: absolute;
-    width: 10px;
+    width: 8px;
     aspect-ratio: 1/1;
     background: greenyellow;
     border-radius: 50%;
-    top: 5px;
-    right:5px;
+    top: 6px;
+    right:6px;
 }

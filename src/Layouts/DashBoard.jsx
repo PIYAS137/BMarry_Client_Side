@@ -1,14 +1,22 @@
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import './DashboardStyle.css';
+import useGetAdminStatus from '../hooks/getAdminStatusHook/useGetAdminStatus';
+import { useContext } from 'react';
+import { AuthContext } from '../Context/FirebaseAuthContext';
 
 const DashBoard = () => {
 
-
+  const { Firebase_Logout_User } = useContext(AuthContext)
   const location = useLocation();
   const pathName = location.pathname.split('/')[2];
+  const [adminStatus] = useGetAdminStatus()
 
+  const isAdmin = adminStatus
 
-  const isAdmin = true
+  const handleClickLogOut=()=>{
+    Firebase_Logout_User()
+    .then().catch()
+  }
 
 
   return (
@@ -34,7 +42,7 @@ const DashBoard = () => {
           <NavLink to={'favbiodata'}><li className={`bg-pink-500 text-white px-3 py-2 mb-2 rounded-lg ${pathName === 'favbiodata' ? 'activeNavLink':''}`}>Favourite Biodata</li></NavLink>
           <NavLink to={'married'}><li className={`bg-pink-500 text-white px-3 py-2 mb-2 rounded-lg ${pathName === 'married' ? 'activeNavLink':''}`}>Got Married</li></NavLink>
           <hr className=' h-[4px] bg-red-500 my-3' />
-          <li className="bg-red-500 text-white px-3 py-2 mb-2 rounded-lg">
+          <li onClick={handleClickLogOut} className="bg-red-500 text-white px-3 py-2 mb-2 rounded-lg">
             <button>Log Out</button>
           </li>
           <li className="bg-green-500  text-black px-3 py-2 mb-2 rounded-lg">
