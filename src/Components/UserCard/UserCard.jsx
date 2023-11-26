@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const UserCard = ({ data }) => {
     return (
         <Card sx={{ maxWidth: 300, background: '#ffa0d0', marginBottom: '1.2rem', borderRadius: '1rem' }}>
-            <CardActionArea sx={{ background: 'pink' }}>
+            <CardActionArea sx={{ background: 'pink',cursor:'auto' }}>
                 <div className=' max-h-[330px] overflow-hidden'>
                     <img src={data.biodata_image} className='object-cover w-full h-full' alt="" />
                 </div>

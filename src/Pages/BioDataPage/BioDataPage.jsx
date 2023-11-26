@@ -101,7 +101,7 @@ const BioDataPage = () => {
             </Box>
           </div>
         </div>
-        <div className="p-5 z-50 bg-white flex-1 overflow-y-scroll">
+        <div className="px-5 z-50 bg-white flex-1 ">
           <div className=" flex flex-wrap  justify-between">
             {
               allBioDatas?.map((one, i) => <UserCard key={i} data={one} />)

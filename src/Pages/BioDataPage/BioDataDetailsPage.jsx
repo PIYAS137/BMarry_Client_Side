@@ -1,30 +1,23 @@
-import { useContext, useEffect, useState } from "react"
+import { useState } from "react"
 import SectionHeader from "../../Components/SectionHeader/SectionHeader"
 import SimilarBioDatas from "./SimilarBioDatas"
 import { HiHeart } from "react-icons/hi";
 import { Link, useLoaderData } from "react-router-dom";
-import useSecureAxios from "../../hooks/secureAxiosDataFetchHook/useSecureAxios";
-import { AuthContext } from "../../Context/FirebaseAuthContext";
-import { useQuery } from "@tanstack/react-query";
+
+import useSelfBioDataStatus from "../../hooks/getSelfBioDataStatus/useSelfBioDataStatus";
 
 
 const BioDataDetailsPage = () => {
 
-    const secureAxios = useSecureAxios();
-    const {user,loader}=useContext(AuthContext)
+    // const secureAxios = useSecureAxios();
+    // const {user,loader}=useContext(AuthContext)
     const loaderData = useLoaderData()
+    const [selfData] = useSelfBioDataStatus()
 
     const [isFav, setIsFav] = useState(true)
 
 
-    const {data : selfData = {}} =useQuery({
-        queryKey: ['getOwnInfo'],
-        enabled: !loader,
-        queryFn: async()=>{
-            const res = await secureAxios.get(`/selfStatus?email=${user?.email}`)
-            return res.data
-        }
-    })
+
 
     return (
         <div className="w-full">
@@ -68,7 +61,7 @@ const BioDataDetailsPage = () => {
                     </div>
                 </div>
                 <div className=" bg-red-100 z-50 p-5 rounded-lg">
-                    <SimilarBioDatas />
+                    <SimilarBioDatas genderStatus={loaderData.gender}/>
                 </div>
             </div>
         </div>
