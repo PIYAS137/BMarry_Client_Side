@@ -7,6 +7,7 @@ import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mu
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import useGetAllBiodata from "../../hooks/getAllBioDataHook/useGetAllBiodata";
 
 const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 
@@ -15,6 +16,7 @@ const BioDataPage = () => {
   const [division, setDivision] = React.useState('');
   const [ageValue, setAgeValue] = React.useState([20, 30]);
   const [genderValue, setGenderValue] = React.useState('male');
+  const [allBioDatas,refetch] = useGetAllBiodata()
 
   const handleChangeDivision = (event) => {
     setDivision(event.target.value);
@@ -99,10 +101,10 @@ const BioDataPage = () => {
             </Box>
           </div>
         </div>
-        <div className="p-5 bg-green-500 flex-1 overflow-y-scroll">
-          <div className=" flex flex-wrap  justify-around">
+        <div className="p-5 z-50 bg-white flex-1 overflow-y-scroll">
+          <div className=" flex flex-wrap  justify-between">
             {
-              arr.map((one, i) => <UserCard key={i} data={one} />)
+              allBioDatas?.map((one, i) => <UserCard key={i} data={one} />)
             }
           </div>
           <div className=" bg-red-600">

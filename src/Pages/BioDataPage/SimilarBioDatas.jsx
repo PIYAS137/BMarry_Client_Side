@@ -7,10 +7,10 @@ const SimilarBioDatas = () => {
 
 
   return (
-    <div className=" ">
-        <div>
+    <div className="">
+        <div className="">
             <h1 className=" text-2xl text-center font-semibold">Similar Biodatas</h1>
-            <hr className="bold  bg-red-300 h-[2px] my-5"/>
+            <hr className="bold bg-red-300 h-[2px] my-5"/>
             <div>
                 {
                     arr.map((one,i)=>{

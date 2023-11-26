@@ -17,7 +17,6 @@ const UserBioDataView = () => {
       setUser_Data(res.data)
     })
   },[user])
-  console.log(User_Data);
 
 
 

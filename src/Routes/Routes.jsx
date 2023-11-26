@@ -36,7 +36,8 @@ const router = createBrowserRouter([
                 element: <BioDataPage />
             },
             {
-                path: '/biodatas/sid',
+                path: '/biodatas/:sid',
+                loader:({params})=>fetch(`http://localhost:5022/oneBio/${params.sid}`),
                 element: <BioDataDetailsPage />
             },
             {
