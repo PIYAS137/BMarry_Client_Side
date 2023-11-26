@@ -20,6 +20,7 @@ import ApprovePremiumPage from '../Pages/ApprovePremiumPage/ApprovePremiumPage'
 import ApproveContactReqPage from '../Pages/ApproveContactReqPage/ApproveContactReqPage'
 import GotMarriedPage from '../Pages/GotMarriedPage/GotMarriedPage'
 import UsersSuccessStoryPage from '../Pages/UsersSuccessStoryPage/UsersSuccessStoryPage'
+import UserPrivateRoutes from '../Private/UserPrivateRoutes/UserPrivateRoutes'
 
 
 const router = createBrowserRouter([
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
             {
                 path: '/biodatas/:sid',
                 loader:({params})=>fetch(`http://localhost:5022/oneBio/${params.sid}`),
-                element: <BioDataDetailsPage />
+                element: <UserPrivateRoutes><BioDataDetailsPage /></UserPrivateRoutes>
             },
             {
                 path: '/payment',

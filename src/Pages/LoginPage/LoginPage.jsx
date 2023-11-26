@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../Context/FirebaseAuthContext";
 import Swal from "sweetalert2";
 import usePublicAxiosHook from "../../hooks/publicAxiosDataFetchHook/usePublicAxiosHook";
@@ -13,6 +13,7 @@ const LoginPage = () => {
   const [pass, setPass] = useState('')
 
   const navigate = useNavigate()
+  const location = useLocation()
   const publicAxios = usePublicAxiosHook()
 
 
@@ -27,7 +28,7 @@ const LoginPage = () => {
           showConfirmButton: false,
           timer: 2000
         });
-        navigate('/')
+        navigate(location?.state ? location?.state : '/')
         setEmail('')
         setPass('')
       }).catch(err => {
@@ -60,7 +61,7 @@ const LoginPage = () => {
               showConfirmButton: false,
               timer: 2000
             });
-            navigate('/')
+            navigate(location?.state ? location?.state : '/')
           })
       }).catch()
   }
@@ -75,7 +76,7 @@ const LoginPage = () => {
         <input required onChange={e => setEmail(e.target.value)} value={email} type="email" name='email' placeholder="enter your email" className="mt-1 w-full mb-3 px-3 py-2 rounded-lg text-lg" />
         <label>Enter your passsword</label>
         <input required onChange={e => setPass(e.target.value)} value={pass} type="password" name='password' placeholder="enter your password" className="mt-1 w-full px-3 py-2 rounded-lg text-lg" />
-        <p className=" mt-1">Dont have an account ? Go to <Link className=" font font-semibold text-pink-500" to={'/registration'}>Register Page</Link></p>
+        <p className=" mt-1">Dont have an account ? Go to <Link state={location?.state} className=" font font-semibold text-pink-500" to={'/registration'}>Register Page</Link></p>
         <div className=" flex justify-center">
           <button className="w-full bg-pink-500 text-white px-5 py-2 mt-3 rounded-lg text-lg">LOG IN</button>
         </div>

@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { useForm } from "react-hook-form"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../Context/FirebaseAuthContext"
 import Swal from 'sweetalert2'
 import usePublicAxiosHook from "../../hooks/publicAxiosDataFetchHook/usePublicAxiosHook"
@@ -10,6 +10,7 @@ const RegistrationPage = () => {
   const { Firebase_SignUp_User, Firebase_Update_User } = useContext(AuthContext)
   const navigate = useNavigate()
   const publicAxios = usePublicAxiosHook()
+  const location = useLocation()
 
   const {
     register,
@@ -41,7 +42,7 @@ const RegistrationPage = () => {
                     showConfirmButton: false,
                     timer: 2000
                   });
-                  navigate('/')
+                  navigate(location?.state ? location?.state : '/')
                   reset()
                 }
               })
