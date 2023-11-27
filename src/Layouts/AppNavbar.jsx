@@ -20,7 +20,6 @@ import useGetAdminStatus from '../hooks/getAdminStatusHook/useGetAdminStatus';
 
 function AppNavbar() {
     const { user, Firebase_Logout_User } = React.useContext(AuthContext);
-    console.log(user);
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const [adminStatus] = useGetAdminStatus();

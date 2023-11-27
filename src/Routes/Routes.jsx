@@ -43,7 +43,7 @@ const router = createBrowserRouter([
                 element: <UserPrivateRoutes><BioDataDetailsPage /></UserPrivateRoutes>
             },
             {
-                path: '/payment',
+                path: '/payment/:sid',
                 element:<PaymentPage />
             },
             {

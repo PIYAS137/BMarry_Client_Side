@@ -127,7 +127,7 @@ const BioDataDetailsPage = () => {
                                 :
                                 <div className=" flex justify-center flex-col items-center mt-5">
                                     <p className=" text-red-500">Contact info is resurved for premium users only</p>
-                                    <Link state={{ money: 500 }} to={'/payment'}><button className=" bg-blue-400 text-white px-5 py-2 rounded-lg mt-2">Req Contact Info</button></Link>
+                                    <Link to={`/payment/${loaderData.biodata_id}`}><button className=" bg-blue-400 text-white px-5 py-2 rounded-lg mt-2">Req Contact Info</button></Link>
                                 </div>
                         }
                     </div>

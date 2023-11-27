@@ -29,7 +29,6 @@ const FavBioDataPage = () => {
       return res.data;
     }
   })
-  console.log(myFavDatas);
 
 
 
@@ -56,6 +55,9 @@ const FavBioDataPage = () => {
             </TableBody>
           </Table>
         </TableContainer>
+        {
+              myFavDatas.length == 0 && <p className=' bg-red-100 my-2 rounded-lg p-3 text-center text-red-500 font-bold'> You not added any biodata to your favourite list</p>
+            }
       </div>
     </div>
   );
