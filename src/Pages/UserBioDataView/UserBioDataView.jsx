@@ -2,21 +2,62 @@ import { useContext, useEffect, useState } from "react";
 import SectionHeader from "../../Components/SectionHeader/SectionHeader"
 import useSecureAxios from "../../hooks/secureAxiosDataFetchHook/useSecureAxios"
 import { AuthContext } from "../../Context/FirebaseAuthContext";
+import Swal from 'sweetalert2'
+import useSelfBioDataStatus from "../../hooks/getSelfBioDataStatus/useSelfBioDataStatus";
 
 
 const UserBioDataView = () => {
 
-  const {user} = useContext(AuthContext)
-  const [User_Data,setUser_Data] = useState({})
+  const { user } = useContext(AuthContext)
+  const [User_Data, setUser_Data] = useState({})
+  const [selfData] = useSelfBioDataStatus()
 
   const secureAxios = useSecureAxios();
 
-  useEffect(()=>{
+  useEffect(() => {
     secureAxios.get(`/biodata/${user?.email}`)
-    .then(res=>{
-      setUser_Data(res.data)
-    })
-  },[user])
+      .then(res => {
+        setUser_Data(res.data)
+      })
+  }, [user])
+
+  const handleSendPremiumReq = (sid) => {
+    Swal.fire({
+      title: "Want to being Premium ?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, do it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const storedData = {
+          senderName: User_Data.name,
+          senderEmail: User_Data.email,
+          senderBiodataId: User_Data.biodata_id,
+          sender_id: User_Data._id
+        }
+        secureAxios.post('/premium', storedData)
+          .then(res => {
+            if (res.data.message === "AlreadyExist") {
+              Swal.fire({
+                title: "Already Requested !",
+                text: "Your request is recorded already",
+                icon: "warning"
+              });
+            }
+            if (res.data.insertedId) {
+              Swal.fire({
+                title: "Request Done!",
+                text: "Your request is recorded",
+                icon: "success"
+              });
+            }
+          })
+      }
+    });
+  }
 
 
 
@@ -50,7 +91,12 @@ const UserBioDataView = () => {
           </div>
         </div>
         <div className=" flex  justify-center">
-          <button className=" py-3 px-5 bg-blue-400 rounded-lg text-white mt-3">Make Biodata To Premium</button>
+          {
+            selfData?.is_premium ?
+              <p className=" my-3 text-purple-500 font-bold text-lg border-4 p-2 rounded-xl border-purple-500">You are a Premium User</p>
+              :
+              <button onClick={() => handleSendPremiumReq(User_Data._id)} className=" py-3 px-5 bg-blue-400 rounded-lg text-white mt-3">Make Biodata To Premium</button>
+          }
         </div>
       </div>
     </div>

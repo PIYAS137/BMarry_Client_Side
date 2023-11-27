@@ -1,18 +1,19 @@
 import { TableCell, TableRow } from "@mui/material"
 
 
-const PremiumRow = ({ data }) => {
+const PremiumRow = ({ data , handleClickMakePremium}) => {
+    console.log(data);
     return (
         <TableRow>
             <TableCell component="th" scope="row">
-                {data.name}
+                {data.senderName}
             </TableCell>
-            <TableCell align="center">{data.email}</TableCell>
+            <TableCell align="center">{data.senderEmail}</TableCell>
             <TableCell align="center">
-                <span>123</span>
+                <span>{data.senderBiodataId}</span>
             </TableCell>
             <TableCell align="center">
-                <button className=" py-2 px-4 text-xs bg-purple-600 text-white rounded-lg">Make Premium</button>
+                <button onClick={()=>handleClickMakePremium(data.senderEmail)} className=" py-2 px-4 text-xs bg-purple-600 text-white rounded-lg">Make Premium</button>
             </TableCell>
         </TableRow>
     )
