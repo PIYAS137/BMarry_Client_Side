@@ -7,7 +7,7 @@ import { AuthContext } from "../../Context/FirebaseAuthContext";
 import { useNavigate } from "react-router-dom";
 
 
-const IMGBB_URL = `https://api.imgbb.com/1/upload?expiration=600&key=${import.meta.env.VITE_IMGBB_SECURITY_KEY}`
+const IMGBB_URL = `https://api.imgbb.com/1/upload?&key=${import.meta.env.VITE_IMGBB_SECURITY_KEY}`
 
 const UserBioDataEdit = () => {
 

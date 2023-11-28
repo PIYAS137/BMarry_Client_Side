@@ -46,24 +46,12 @@ const SliderSection = () => {
 
     return (
         <div ref={sliderRef} className="keen-slider my-5">
-            {/* <div className="keen-slider__slide number-slide1">
-                <div id="slide1" className="carousel-item relative w-full max-h-[700px] bg-red-500 rounded-xl overflow-hidden">
-                    <img className=" w-full h-full object-cover" src='https://c0.wallpaperflare.com/path/785/119/722/blur-bowl-child-date-fruits-00629ad0502ff75118cd6a0903d7ea87.jpg' className="w-full object-cover" />
-                    <div className="p-8 md:p-16 flex flex-col justify-center absolute left-0 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)] h-full w-full">
-                        <div className=' text-white'>
-                            <h1 className='mb-4 text-2xl md:text-4xl lg:text-6xl font-extrabold md:max-w-[35%]'>Share A Bite With Loving People</h1>
-                            <p className='font-semibold text-xs md:text-base lg:text-lg mb-5'>Connecting people through food, one shared bite at a time. <br /> Join our food-sharing community and make new friends.</p>
-                            <div className=''>
-                                <Link to={'/availablefood'}><button className='text-xs lg:text-base bg-red-500 hover:bg-red-600 btn text-white border-none mr-2 lg:mr-3'>Discover Food</button></Link>
-                                <Link to={'/addfood'}><button className='text-xs lg:text-base btn btn-outline border-white text-white'>Donate Food</button></Link>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="absolute flex justify-end transform -translate-y-1/2 left-5 right-10 bottom-3">
-                        <a href="#slide6" className="btn btn-circle md:p-4 rounded-lg mr-4 bg-black opacity-50 text-white border-none">❮</a>
-                        <a href="#slide2" className="btn btn-circle md:p-4 rounded-lg bg-orange-600 hover:bg-orange-700 border-none text-white">❯</a>
-                    </div>
-                </div>
+            {/* https://i.ibb.co/th9b7RZ/couple-love-drinking-coffee-coffee-shop.jpg
+                https://i.ibb.co/0V6dN8B/hispanic-couple-with-electronic-devices-cafe.jpg
+                https://i.ibb.co/Zhw7vzd/romantic-couple-outdoors-near-cafe.jpg
+                https://i.ibb.co/vLXZBR8/low-angle-woman-male-restaurant.jpg
+                https://i.ibb.co/D1VCLd7/stylish-couple-enjoying-dinner.jpg
+                https://i.ibb.co/cD0cHLy/couple-having-romantic-meeting-restaurant.jpg
             </div> */}
             <div className="keen-slider__slide number-slide1 relative">
                 <div id="slide1" className="carousel-item w-full max-h-[700px] rounded-xl overflow-hidden relative">

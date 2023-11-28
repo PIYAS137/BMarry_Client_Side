@@ -8,6 +8,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import SuccessStoryRow from "./SuccessStoryRow";
+import useSecureAxios from "../../hooks/secureAxiosDataFetchHook/useSecureAxios";
+import { useQuery } from "@tanstack/react-query";
+import { useContext } from "react";
+import { AuthContext } from "../../Context/FirebaseAuthContext";
 
 const datas = [
     {
@@ -25,6 +29,23 @@ const datas = [
 ]
 
 const UsersSuccessStoryPage = () => {
+
+
+    const secureAxios = useSecureAxios();
+    const { loader } = useContext(AuthContext);
+
+    const {data : getSuccessStorys = []} = useQuery({
+        queryKey : ['loadAllSuccess'],
+        enabled : !loader,
+        queryFn : async ()=>{
+            const res = await secureAxios.get('/getSuccess');
+            return res.data;
+        }
+    })
+    console.log(getSuccessStorys);
+
+
+
     return (
         <div>
             <SectionHeader small={'all users success storys is here'} big={'Users Success Story'} />
@@ -37,11 +58,11 @@ const UsersSuccessStoryPage = () => {
                                 <TableCell sx={{ fontWeight: 'bold' }} align="center">Male User Biodata Id</TableCell>
                                 <TableCell sx={{ fontWeight: 'bold' }} align="center">Female User Name</TableCell>
                                 <TableCell sx={{ fontWeight: 'bold' }} align="center">Female User Biodata Id</TableCell>
-                                <TableCell sx={{ fontWeight: 'bold' }} align="center">Make Premium</TableCell>
+                                <TableCell sx={{ fontWeight: 'bold' }} align="center">View Story</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {datas.map((row, i) => <SuccessStoryRow key={i} data={row} />)}
+                            {getSuccessStorys?.map((row) => <SuccessStoryRow key={row._id} data={row} />)}
                         </TableBody>
                     </Table>
                 </TableContainer>

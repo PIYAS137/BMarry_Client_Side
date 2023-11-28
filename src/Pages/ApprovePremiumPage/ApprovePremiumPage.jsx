@@ -40,7 +40,6 @@ const ApprovePremiumPage = () => {
       confirmButtonText: "Yes, do it!"
     }).then((result) => {
       if (result.isConfirmed) {
-
         secureAxios.patch(`/premium/${email}`)
           .then(res => {
             if (res.data.deletedCount > 0) {
