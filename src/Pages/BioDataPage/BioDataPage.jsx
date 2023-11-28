@@ -1,22 +1,38 @@
 import SectionHeader from "../../Components/SectionHeader/SectionHeader"
 import UserCard from "../../Components/UserCard/UserCard"
 import * as React from 'react';
+import './BioData.css'
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import useGetAllBiodata from "../../hooks/getAllBioDataHook/useGetAllBiodata";
-
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+import usePublicAxiosHook from "../../hooks/publicAxiosDataFetchHook/usePublicAxiosHook";
+import { useLoaderData } from "react-router-dom";
 
 
 const BioDataPage = () => {
+  const loaderData = useLoaderData()
+  const publicAxios = usePublicAxiosHook()
   const [division, setDivision] = React.useState('');
-  const [ageValue, setAgeValue] = React.useState([20, 30]);
-  const [genderValue, setGenderValue] = React.useState('male');
-  const [allBioDatas,refetch] = useGetAllBiodata()
+  const [ageValue, setAgeValue] = React.useState([0, 70]);
+  const [genderValue, setGenderValue] = React.useState('all');
+  const [ItemsPerPage, setItemsPerPage] = React.useState(20);
+  const [allBioDatas, setAllBioDatas] = React.useState([])
+  const [permanentDatas, setPermanentDatas] = React.useState([])
+  const [currentPage, setCurrentPage] = React.useState(0)
+  const numberOfPages = Math.ceil(loaderData.length / ItemsPerPage);
+  const pages = [...Array(numberOfPages).keys()]
+
+
+  React.useEffect(() => {
+    publicAxios.get(`/biodatas?page=${currentPage}&size=${ItemsPerPage}`)
+      .then(res => {
+        setAllBioDatas(res.data);
+        setPermanentDatas(res.data)
+      })
+  }, [currentPage, ItemsPerPage])
 
   const handleChangeDivision = (event) => {
     setDivision(event.target.value);
@@ -28,9 +44,65 @@ const BioDataPage = () => {
     setGenderValue(event.target.value);
   };
 
+
+
+
+
+
+
   React.useEffect(() => {
-    console.log({ ageValue, genderValue, division });
+    let filteredData = [...permanentDatas];
+    if (division !== "") {
+      filteredData = filteredData.filter(one => one.parmanent_address.toLowerCase() === division.toLowerCase())
+    }
+
+    if (genderValue != 'all') {
+      filteredData = filteredData.filter(one => one.gender === genderValue)
+    }
+    filteredData = filteredData.filter(one => {
+      const age = one.age// 
+      return age >= ageValue[0] && age <= ageValue[1];
+    });
+
+
+    setAllBioDatas(filteredData)
   }, [ageValue, genderValue, division])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  const handleChangeSelect = (e) => {
+    setItemsPerPage(parseInt(e.target.value))
+    setCurrentPage(0)
+  }
+  const handleClickNext = () => {
+    if (currentPage < pages.length - 1) {
+      setCurrentPage(currentPage + 1)
+    }
+  }
+  const handleClickPrev = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1)
+    }
+  }
+
+
 
 
 
@@ -51,8 +123,8 @@ const BioDataPage = () => {
                 <Slider
                   getAriaLabel={() => 'Temperature range'}
                   value={ageValue}
-                  max={50}
-                  min={18}
+                  max={70}
+                  min={0}
                   onChange={handleChangeAge}
                   valueLabelDisplay="auto"
                 />
@@ -70,6 +142,7 @@ const BioDataPage = () => {
                   onChange={handleChangeGender}
                 >
                   <div className=" flex">
+                    <FormControlLabel value="all" control={<Radio />} label="All" />
                     <FormControlLabel value="female" control={<Radio />} label="Female" />
                     <FormControlLabel value="male" control={<Radio />} label="Male" />
                   </div>
@@ -80,7 +153,7 @@ const BioDataPage = () => {
           <div>
             <Box sx={{ minWidth: 120 }}>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Select Division</InputLabel>
+                <InputLabel id="demo-simple-select-label">Division</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
@@ -107,8 +180,20 @@ const BioDataPage = () => {
               allBioDatas?.map((one, i) => <UserCard key={i} data={one} />)
             }
           </div>
-          <div className=" bg-red-600">
-            Pagination
+          <div className=" mt-5 space-x-3">
+            <button onClick={handleClickPrev} className=" bg-red-400 text-white h-8 px-2 aspect-square rounded-lg">Prev</button>
+            {
+              pages.map(one => <button onClick={() => setCurrentPage(one)}
+                className={`${currentPage == one ? 'activaPage' : ''} font-bold bg-red-400 text-white w-8 aspect-square rounded-lg`}
+                key={one}>{one}</button>)
+            }
+            <button onClick={handleClickNext} className=" bg-red-400 text-white h-8 px-2 aspect-square rounded-lg">Next</button>
+            <select value={ItemsPerPage} onChange={handleChangeSelect} className=" bg-red-700 px-3 py-1 rounded-lg text-white font-bold">
+              <option value="9">9</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+            </select>
           </div>
         </div>
       </div>

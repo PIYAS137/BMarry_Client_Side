@@ -35,6 +35,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/biodatas',
+                loader: ()=>fetch('http://localhost:5022/biodatas'),
                 element: <BioDataPage />
             },
             {
