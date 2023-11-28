@@ -122,7 +122,7 @@ const UserBioDataEdit = () => {
 
 
   return (
-    <div className=" py-10">
+    <div className=" py-10 px-3 lg:px-0">
       <form onSubmit={handleSubmit(onSubmit)} className=" bg-blue-200 rounded-xl p-5 max-w-2xl mx-auto">
         <h1 className=" text-2xl font-semibold my-3 text-center">Edit Your Biodata</h1>
         <small>Enter Name</small>

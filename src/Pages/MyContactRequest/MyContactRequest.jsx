@@ -13,27 +13,11 @@ import { AuthContext } from '../../Context/FirebaseAuthContext';
 import useSecureAxios from '../../hooks/secureAxiosDataFetchHook/useSecureAxios';
 import Swal from 'sweetalert2';
 
-const datas = [
-  {
-    name: 'piyas',
-    id: 12,
-    phone: 123,
-    email: 'asdfasf'
-  },
-  {
-    name: 'piyas',
-    id: 13,
-    phone: 123,
-    email: 'asdfasf'
-  }
-]
-
 
 const MyContactRequest = () => {
 
   const { user, loader } = React.useContext(AuthContext)
   const secureAxios = useSecureAxios()
-
   const { data: userReqs = [], refetch } = useQuery({
     queryKey: ['usersReqContact'],
     enabled: !loader,
@@ -42,7 +26,6 @@ const MyContactRequest = () => {
       return res.data
     }
   })
-  console.log(userReqs);
 
   const handleDeleteReq = (bid) => {
     Swal.fire({

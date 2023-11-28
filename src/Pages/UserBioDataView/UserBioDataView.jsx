@@ -63,7 +63,7 @@ const UserBioDataView = () => {
 
 
   return (
-    <div>
+    <div className="px-3 lg:px-0">
       <SectionHeader small={'view how people see your details'} big={'View Biodata'} />
       <div className="  max-w-2xl mx-auto">
         <div className=" bg-pink-100 flex flex-col-reverse lg:flex-row justify-between items-center lg:items-start rounded-lg">
@@ -90,7 +90,7 @@ const UserBioDataView = () => {
             <h1 className="font-semibold ">Gender : <span className=" capitalize">{User_Data.gender}</span></h1>
           </div>
         </div>
-        <div className=" flex  justify-center">
+        <div className=" flex  justify-center mb-10 lg:mb-0">
           {
             selfData?.is_premium ?
               <p className=" my-3 text-purple-500 font-bold text-lg border-4 p-2 rounded-xl border-purple-500">You are a Premium User</p>

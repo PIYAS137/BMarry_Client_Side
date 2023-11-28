@@ -23,13 +23,8 @@ const PaymentPage = () => {
     }, [user])
 
 
-    // kaje lagbe { money, herId, myId, myEmail}
-
-
-
-
     return (
-        <div>
+        <div className=" px-3 md:px-0">
             <SectionHeader small={'lets pay the require fees'} big={'Checkout Page'} />
             <div>
                 <div action="" className=" bg-red-200 max-w-2xl mx-auto p-5 rounded-xl">

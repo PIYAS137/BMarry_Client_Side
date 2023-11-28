@@ -4,15 +4,16 @@ import { FaInstagram } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaHouseUser } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
+import LOGO from '../assets/LOGO.png'
 
 
 
 const AppFooter = () => {
     return (
-        <div className=" h-[300px] bg-pink-300 mt-20  py-16">
-            <div className="grid grid-cols-5 max-w-[1480px] mx-auto ">
+        <div className=" px-5 md:px-0 bg-pink-100 mt-20 py-16">
+            <div className="grid grid-cols-1 md:grid-cols-5 max-w-[1480px] mx-auto px-3 2xl:px-0">
                 <div className=" col-span-2 space-y-2">
-                    <h1>LOGO</h1>
+                    <img src={LOGO} className="w-20" alt="" />
                     <p className=" text-3xl font-black">BMarry</p>
                     <p>Copyright © 2023 - All right reserved</p>
                 </div>

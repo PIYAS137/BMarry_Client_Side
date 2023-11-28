@@ -3,8 +3,7 @@ import SectionHeader from "../../Components/SectionHeader/SectionHeader"
 
 const ContactPage = () => {
   return (
-    <div className=" h-screen
-    ">
+    <div className="  px-3 md:px-0">
       <SectionHeader small={'here is the way of contact with us !'} big={'Contact Page'} />
 
       <div className="grid grid-cols-1 md:grid-cols-2 rounded-3xl overflow-hidden max-w-4xl mx-auto">

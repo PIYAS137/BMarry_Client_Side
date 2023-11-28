@@ -1,16 +1,15 @@
 import SectionHeader from "../SectionHeader/SectionHeader"
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
 
-const AdminStatistics = () => {
+const AdminStatistics = ({finalData}) => {
 
     const data = [
-        { name: 'Group A', value: 400 },
-        { name: 'Group B', value: 300 },
-        { name: 'Group C', value: 300 },
-        { name: 'Group D', value: 200 },
+        { name: 'Male Biodata', value: finalData?.male_biodata_count    },
+        { name: 'Female Biodata', value: finalData?.female_biodata_count },
+        { name: 'Premium Biodata', value: finalData?.premium_biodata_count },
     ];
 
-    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+    const COLORS = ['#0088FE', '#00C49F', '#FF8042'];
 
     const RADIAN = Math.PI / 180;
     const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
@@ -27,7 +26,7 @@ const AdminStatistics = () => {
 
 
     return (
-        <div className=" w-full h-[400px] ">
+        <div className=" w-full h-[400px] mb-20">
             <SectionHeader big={'Statistics View'} small={'show all data as quantitative order'} />
             <div className=" w-full h-full -mt-28">
                 <ResponsiveContainer width="100%" height="100%">

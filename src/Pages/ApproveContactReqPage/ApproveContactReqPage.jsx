@@ -47,8 +47,8 @@ const ApproveContactReqPage = () => {
             console.log(res.data);
             if (res.data.modifiedCount > 0) {
               Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
+                title: "Approved!",
+                text: "Your uperation has been updated.",
                 icon: "success"
               });
               refetch()

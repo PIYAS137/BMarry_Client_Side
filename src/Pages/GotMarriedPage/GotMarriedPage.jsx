@@ -85,7 +85,7 @@ const GotMarriedPage = () => {
 
 
     return (
-        <div className=" mb-10">
+        <div className=" mb-10 px-3 lg:px-0">
             <SectionHeader small={'Congratulation couple !'} big={'Got Married Page'} />
             <div>
                 <form onSubmit={handleSubmit(onSubmit)} className=" bg-red-200 rounded-xl p-5 max-w-2xl mx-auto">

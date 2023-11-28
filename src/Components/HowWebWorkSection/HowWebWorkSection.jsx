@@ -10,7 +10,7 @@ const HowWebWorkSection = () => {
                 <div className="flex justify-center items-center flex-1 ">
                     <WorkProcess />
                 </div>
-                <div className="flex justify-center items-center flex-1 pb-10 lg:pb-0">
+                <div className="flex justify-center items-center flex-1 pb-10 lg:pb-0 px-2 md:px-0">
                     <img className="w-full max-w-lg " src="https://i.ibb.co/GHcSTRp/kisspng-business-process-management-outsourcing-pardot-rh-5b301164e48a95-3604194715298768369361.png" alt="" />
                 </div>
             </div>

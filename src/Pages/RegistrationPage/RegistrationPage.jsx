@@ -62,7 +62,7 @@ const RegistrationPage = () => {
 
 
   return (
-    <div className=" h-screen flex justify-center items-center">
+    <div className="px-3 lg:px-0 h-screen flex justify-center items-center">
       <form onSubmit={handleSubmit(onSubmit)} className=" p-7 bg-purple-200 max-w-2xl mx-auto -mt-32 rounded-xl">
         <h1 className="text-4xl text-center font-bold mb-5">Register User</h1>
         <label>Enter your name</label>

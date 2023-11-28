@@ -5,7 +5,7 @@ import AppFooter from "../../Layouts/AppFooter"
 
 const Root = () => {
     return (
-        <div>
+        <div className="">
             <AppNavbar />
             <div className=" max-w-[1480px] mx-auto ">
                 <Outlet />

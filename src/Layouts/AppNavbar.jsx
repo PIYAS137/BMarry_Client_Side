@@ -12,9 +12,10 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { NavLink, useLocation } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { AuthContext } from '../Context/FirebaseAuthContext';
 import useGetAdminStatus from '../hooks/getAdminStatusHook/useGetAdminStatus';
+import LOGO from '../assets/LOGO.png'
 
 
 
@@ -195,7 +196,9 @@ function AppNavbar() {
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                    <Link to='/'>
+                        <img src={LOGO} className='w-14 my-3 md:my-0 mr-2' alt="" />
+                    </Link>
                     <Typography
                         variant="h6"
                         noWrap
@@ -211,7 +214,7 @@ function AppNavbar() {
                             textDecoration: 'none',
                         }}
                     >
-                        BIYE
+                        <Link to={'/'}>BMarry</Link>
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
@@ -245,7 +248,6 @@ function AppNavbar() {
                             {MobileLink}
                         </Menu>
                     </Box>
-                    <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                     <Typography
                         variant="h5"
                         noWrap
@@ -262,7 +264,7 @@ function AppNavbar() {
                             textDecoration: 'none',
                         }}
                     >
-                        BIYE
+                        <Link to={'/'}>BMarry</Link>
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {NavLinks}

@@ -69,24 +69,6 @@ const BioDataPage = () => {
   }, [ageValue, genderValue, division])
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   const handleChangeSelect = (e) => {
     setItemsPerPage(parseInt(e.target.value))
     setCurrentPage(0)
@@ -102,19 +84,13 @@ const BioDataPage = () => {
     }
   }
 
-
-
-
-
-
-
   return (
     <div className=" h-full">
       <div>
         <SectionHeader big={"Users Biodata"} small={'see all of our users biodata'} />
       </div>
       <div className=" flex gap-5 h-full flex-col lg:flex-row items-center lg:items-start">
-        <div className="bg-red-200 p-5 rounded-lg w-[50%] lg:w-[30%]  h-full sticky top-3">
+        <div className="bg-red-200 p-5 rounded-lg md:w-[50%] lg:w-[30%]  h-full sticky top-3">
           <h1 className=" text-2xl text-center font-bold">Filter Result</h1>
           <div className=" flex space-x-5 mt-5">
             <div className=" text-lg text-gray-600">Age</div>
@@ -175,7 +151,7 @@ const BioDataPage = () => {
           </div>
         </div>
         <div className="px-5 z-50 bg-white flex-1 ">
-          <div className=" flex flex-wrap  justify-between">
+          <div className=" flex flex-wrap justify-center sm:justify-between">
             {
               allBioDatas?.map((one, i) => <UserCard key={i} data={one} />)
             }
