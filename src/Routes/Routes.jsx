@@ -35,12 +35,12 @@ const router = createBrowserRouter([
             },
             {
                 path: '/biodatas',
-                loader: ()=>fetch('http://localhost:5022/biodatas'),
+                loader: ()=>fetch('https://backend-side-ten.vercel.app/biodatas'),
                 element: <BioDataPage />
             },
             {
                 path: '/biodatas/:sid',
-                loader:({params})=>fetch(`http://localhost:5022/oneBio/${params.sid}`),
+                loader:({params})=>fetch(`https://backend-side-ten.vercel.app/oneBio/${params.sid}`),
                 element: <UserPrivateRoutes><BioDataDetailsPage /></UserPrivateRoutes>
             },
             {

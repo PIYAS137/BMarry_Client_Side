@@ -33,7 +33,7 @@ const SuccessStoryCard = ({ data }) => {
         <Card sx={{ maxWidth: 345, background: 'pink', borderRadius: '1rem', marginBottom:'2rem' }}>
             <CardHeader
                 sx={{ textAlign: 'center' }}
-                subheader={data.marriage_date}
+                subheader={`Marriage Date : ${data.marriage_date}`}
             />
             <div className=' max-h-[400px] overflow-hidden'>
                 <img src={data.couple_image_link} className='object-cover w-full h-full' alt="" />

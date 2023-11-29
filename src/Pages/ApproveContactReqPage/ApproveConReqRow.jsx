@@ -2,7 +2,6 @@ import { TableCell, TableRow } from "@mui/material"
 
 const ApproveConReqRow = ({data, handleApprove}) => {
 
-    console.log(data);
 
 
 
