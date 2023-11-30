@@ -5,6 +5,7 @@
 - React Hook Form
 - Material UI
 - Tanstack Query 
+- Payment Gateway ( Strie ) 
 - Axios (Interceptors)
 - Keen Slider
 - Recharts
