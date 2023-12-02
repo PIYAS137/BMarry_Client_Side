@@ -13,6 +13,7 @@ DEMO Admin password: Ryan222156479#
 - Tanstack Query 
 - Payment Gateway ( Stripe ) 
 - Axios (Interceptors)
+- IMGBB (Image Hosting)
 - Keen Slider
 - Recharts
 - SweetAlert
