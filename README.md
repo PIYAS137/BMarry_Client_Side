@@ -1,7 +1,7 @@
 ## [LIVE LINK](https://bmarry.web.app)
 ## [Server Side LINK](https://github.com/PIYAS137/BMarry_Server_Side)
 
-DEMO Admin email: ryanreynolds@gmail.com
+DEMO Admin email: ryanreynolds@gmail.com <br/>
 DEMO Admin password: Ryan222156479#
 
 ## Features I Use :
