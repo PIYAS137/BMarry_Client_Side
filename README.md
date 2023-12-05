@@ -21,8 +21,4 @@ DEMO Admin password: Ryan222156479#
 ## Front End : React + Tailwind
 ## Back End : Express.Js
 ## Database : MongoDB
-## Optional Tasks Complete
-- ( Point-2 ) Material UI (USED)
-- ( Point-3 ) Tanstack Query & Pagination (USED)
-- ( Point-4 ) Implement Axios Interceptor (USED)
-- ( Point-5 ) Data must be shown first time reloading (Confident)
+
