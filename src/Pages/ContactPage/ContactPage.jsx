@@ -1,7 +1,36 @@
+import Swal from "sweetalert2";
 import SectionHeader from "../../Components/SectionHeader/SectionHeader"
+import emailjs from '@emailjs/browser';
+import { useRef } from "react";
+
 
 
 const ContactPage = () => {
+
+  const form = useRef(null);
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('default1', 'template_wpuri8h', e.currentTarget, 'R-PIU8JgrSoL-sOGO')
+      .then(() => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Piyas Receive Your Response. Let check your email...!",
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }, (error) => {
+        console.log(error.text);
+      });
+    e.currentTarget.reset()
+  }
+
+
+
+
+
   return (
     <div className="  px-3 md:px-0">
       <SectionHeader small={'here is the way of contact with us !'} big={'Contact Page'} />
@@ -12,14 +41,19 @@ const ContactPage = () => {
           <img className=" w-full -mt-1 h-full" src="https://i.ibb.co/TLrf4sy/Tenniswood-Inspiration-Photo.jpg" alt="" />
         </div>
         <div className="">
-          <form action="" className=" p-5 bg-red-200 h-full">
-          <h1 className=" bg-red-200 p-6 text-3xl font-bold text-center">Our Headquater</h1>
-            <label htmlFor="">Enter your email</label>
-            <input type="text" placeholder="enter your email" className="mt-2 w-full px-3 py-2 text-lg mb-5 rounded-lg" />
-            <label htmlFor="">Enter your message</label>
-            <input type="text" placeholder="enter your message" className="mt-2 w-full px-3 py-2 text-lg rounded-lg" />
-            <div className=" flex justify-center">
-            <button className=" px-5 py-2 bg-red-400 text-white mt-3 rounded-lg">Send Message</button>
+          <form ref={form} className='dark:bg-slate-600 bg-green-200 p-5 h-full pt-10 md:pt-16 flex items-center flex-col' onSubmit={sendEmail}>
+            <h1 className=' text-2xl mb-4 font-black text-green-600'>Contact With Us</h1>
+            <div className=' w-full'>
+              <input className='w-full p-2 rounded-lg' placeholder='Enter Your name' type="text" name="from_name" />
+            </div>
+            <div className=' w-full mt-2'>
+              <input className='w-full p-2 rounded-lg' placeholder='Enter your email' type="email" name="from_email" />
+            </div>
+            <div className=' w-full mt-2'>
+              <textarea className='w-full p-2 rounded-lg' rows={6} placeholder='Enter your message' name="message" />
+            </div>
+            <div>
+              <input className='border border-green-500 py-2 px-7 rounded-lg bg-white font-bold text-green-600' type="submit" value="Send Message" />
             </div>
           </form>
         </div>
