@@ -18,7 +18,7 @@ const SuccessCounter = () => {
         <div className="p-5 rounded-lg flex-1 bg-purple-400">
           <HiMiniUsers className=" text-4xl lg:absolute" />
           <h1 className=" text-lg font-bold text-center">Total Biodatas</h1>
-          <p className=" text-5xl font-bold text-center">{allSummary.male_biodata_count}</p>
+          <p className=" text-5xl font-bold text-center">{allSummary.total_biodata_count}</p>
           <small className=" text-center block mt-2">Active Biodatas</small>
         </div>
 
